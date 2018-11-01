@@ -29,6 +29,7 @@ def upsert(df, table, index=None):
             return
 
         else:
+            records = df.to_dict(orient='records')
             fields = df.columns
             placeholders = ':'+', :'.join(fields)
             insert_stmt = "INSERT INTO {table} ({fields}) VALUES ({values});"\

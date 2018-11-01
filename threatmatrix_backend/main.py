@@ -8,8 +8,9 @@ from utils import upsert
 
 log = logging.getLogger(__name__)
 
+
 sources = {
-    'acled': acled,
+    'acled': acled.Acled,
     'wbi': world_bank 
 }
 # TODO: clean this up
@@ -19,12 +20,22 @@ tables = {
 }
 
 
+# def main():
+#     args = parse_args()
+#     log.info('starting')
+#     df = sources[args.source].get_data()
+#     table = tables[args.source]
+#     upsert(df, table)
+
 def main():
     args = parse_args()
-    log.info('starting')
-    df = sources[args.source].get_data()
-    table = tables[args.source]
-    upsert(df, table)
+    source = sources[args.source]()
+    log.info(f'Running {source.name}')
+    source.get_data()
+    upsert(source.data, source.table)
+    if source.steps:
+        for step in source.steps:
+            step()
 
 
 def parse_args():

@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="threatmatrix_backend",
-    version="0.0.1",
+    version="0.0.2",
     author="Michael Gasvoda",
     description="Conflict data aggregation and analysis framework",
     long_description=long_description,
