@@ -44,7 +44,8 @@ class Acled:
     def aggregate(self):
         output_table = "acled_aggregates"
         df = self.data
+        print(df.head())
 
-        df['fatalities'] = pd.to_numeric(df['fatalites'], downcast='integer').fillna(0)
-        df = df.groupby('country').sum()[fatalities].to_frame().reset_index()
+        df['fatalities'] = pd.to_numeric(df['fatalities'], downcast='integer').fillna(0)
+        df = df.groupby('country').sum()['fatalities'].to_frame().reset_index()
         df.to_sql(output_table, conn, if_exists='replace')

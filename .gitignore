@@ -1,9 +1,10 @@
 **.pyc
-.vscode
 **db.py
 **/__pycache__
 **.ipynb
 **/.ipynb_checkpoints
 *.egg-info/
 
+.vscode
+dev/
 threatmatrix_frontend/app/maps/
